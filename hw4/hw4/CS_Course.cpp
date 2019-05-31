@@ -10,7 +10,10 @@ CS_Course::CS_Course(int num, char* name, int hw_num, double hw_weigh, bool isTa
 	strcpy(book_, book);
 }
 
-CS_Course::~CS_Course() {}
+CS_Course::~CS_Course() 
+{
+	delete[] book_;
+}
 
 int CS_Course::isTakef() const { return isTakef_; }
 
@@ -39,7 +42,7 @@ int CS_Course::getCourseGrade() const
 	{
 		if (round((1 - hw_weigh_)*exam_grade_ + hw_weigh_ * hw_average) > exam_grade_)
 		{
-			course_grade = (round((1 - hw_weigh_)*exam_grade_ + hw_weigh_ * hw_average);
+			course_grade = (round((1 - hw_weigh_)*exam_grade_ + hw_weigh_ * hw_average));
 		}
 		else
 		{
