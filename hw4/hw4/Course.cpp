@@ -1,3 +1,7 @@
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif // !_CRT_SECURE_NO_WARNINGS
+
 #include "Course.h"
 #include <string.h>
 #include <math.h> 
@@ -26,7 +30,8 @@ int Course::getNum() const { return num_; }
 
 char* Course::getName()const
 {
-	char* course_name = strcpy(course_name, name_);
+	char* course_name= new char[strlen(name_)+1];
+	course_name=strcpy(course_name, name_);
 	return course_name;
 	
 }

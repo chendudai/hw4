@@ -1,7 +1,7 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#define NULL nullptr
+//#define NULL nullptr
 #include "Person.h"
 #include "EE_Course.h"
 #include "CS_Course.h"

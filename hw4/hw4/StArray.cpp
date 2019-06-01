@@ -3,6 +3,8 @@
 #include "Student.h"
 #include "EE_Course.h"
 #include "CS_Course.h"
+#include <string.h>
+
 
 StArray::StArray():St_num_(0)
 {
