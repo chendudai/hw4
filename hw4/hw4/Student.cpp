@@ -15,6 +15,19 @@
 }
  Student::~Student()
  {
+	 for (int i = 0; i < MAX_COURSE_NUM; i++)
+	 {
+		 if (pEE_courses_arr_ != NULL)
+		 {
+			 pEE_courses_arr_[i]->~EE_Course();
+		 }
+		 if (pCS_courses_arr_ != NULL)
+		 {
+			 pCS_courses_arr_[i]->~CS_Course();
+		 }
+		
+	 }
+	 
 	 delete[] pEE_courses_arr_;
 	 delete[] pCS_courses_arr_;
  }
@@ -33,6 +46,7 @@ int Student::addEE_Course(EE_Course* p_EE_Course)
 		if (pEE_courses_arr_[i] == NULL)
 		{
 			pEE_courses_arr_[i] = p_EE_Course;
+			EE_course_num_++;
 			return 1;
 		}
 	}
@@ -51,6 +65,7 @@ int Student::addCS_Course(CS_Course* p_CS_Course)
 		if (pCS_courses_arr_[i] == NULL)
 		{
 			pCS_courses_arr_[i] = p_CS_Course;
+			CS_course_num_++;
 			return 1;
 		}
 	}
@@ -84,10 +99,14 @@ EE_Course* Student::getEE_Course(int EE_course_num) const
 {
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
-		if (pEE_courses_arr_[i]->getNum() == EE_course_num)
+		if (pEE_courses_arr_[i] != NULL)
 		{
-			return pEE_courses_arr_[i];
+			if (pEE_courses_arr_[i]->getNum() == EE_course_num)
+			{
+				return pEE_courses_arr_[i];
+			}
 		}
+		
 	}
 	return NULL;
 }
@@ -96,10 +115,14 @@ CS_Course* Student::getCS_Course(int CS_course_num) const
 {
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
-		if (pCS_courses_arr_[i]->getNum() == CS_course_num)
+		if (pCS_courses_arr_[i] != NULL)
 		{
-			return pCS_courses_arr_[i];
+			if (pCS_courses_arr_[i]->getNum() == CS_course_num)
+			{
+				return pCS_courses_arr_[i];
+			}
 		}
+		
 	}
 	return NULL;
 }
@@ -109,11 +132,19 @@ int Student::getAvg() const
 	double sum = 0;
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
-		sum += pEE_courses_arr_[i]->getCourseGrade();
+		if (pEE_courses_arr_[i] != NULL)
+		{
+			sum += pEE_courses_arr_[i]->getCourseGrade();
+		}
+		
 	}
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
-		sum += pCS_courses_arr_[i]->getCourseGrade(); //@@@@@@@@@@@@@@@@ how to get a member
+		if (pCS_courses_arr_[i] != NULL)
+		{
+			sum += pCS_courses_arr_[i]->getCourseGrade(); //@@@@@@@@@@@@@@@@ how to get a member
+		}
+		
 	}
 	return round(sum / (EE_course_num_ + CS_course_num_));
 }
@@ -132,8 +163,11 @@ void Student::print() const
 	{
 		if (pEE_courses_arr_[i] != NULL)
 		{
-			cout << pEE_courses_arr_[i]->getNum() << " " << pEE_courses_arr_[i]->getNum() << " " << pEE_courses_arr_[i]->getCourseGrade() << endl;;
-		}
+			char* course_name ;
+			course_name = (pEE_courses_arr_[i]->getName());
+			cout << pEE_courses_arr_[i]->getNum()  << " " << course_name << " " << pEE_courses_arr_[i]->getCourseGrade() << endl;;
+			delete[] course_name;
+		} 
 	}
 	
 	cout << "CS courses:" << endl;
@@ -141,7 +175,9 @@ void Student::print() const
 	{
 		if (pCS_courses_arr_[i] != NULL)
 		{
-			cout <<  pCS_courses_arr_[i]->getName() << " " << pCS_courses_arr_[i]->getName() << " " << pCS_courses_arr_[i]->getCourseGrade() << endl;;
+			char* course_name = (pCS_courses_arr_[i]->getName());
+			cout << pCS_courses_arr_[i]->getNum() << " " << course_name << " " << pCS_courses_arr_[i]->getCourseGrade() << endl;;
+			delete[] course_name;
 		}
 	}
 }

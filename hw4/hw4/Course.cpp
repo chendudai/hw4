@@ -11,7 +11,7 @@ Course::Course(int num, char* name, int hw_num, double hw_weigh) : num_(num), hw
 {
 	name_ = new char[strlen(name) + 1];
 	strcpy(name_, name);
-	hw_grades_ = new int[hw_num_];
+	hw_grades_ = new int[hw_num_] {0};
 }
 
 Course::~Course()
@@ -46,14 +46,15 @@ double  Course::getHwWeigh() const { return hw_weigh_; }
 
 double Course::getHwAverage() const
 {
-	double average=0;
-	int* tmp = hw_grades_;
-	while (tmp != NULL)
-	{
-		average += *tmp;
-		tmp++;
+	double average = 0;
+	if (hw_num_ != 0)
+	{		
+		for (int i = 0; i < hw_num_; i++)
+		{
+			average += hw_grades_[i];
+		}
+		average = average / hw_num_;		
 	}
-	average = average / hw_num_;
 	return average;
 }
 

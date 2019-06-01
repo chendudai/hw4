@@ -13,6 +13,14 @@ StArray::StArray():St_num_(0)
 
 StArray::~StArray()
 {
+	for (int i = 0; i < MAX_STUDENT_NUM; i++)
+	{
+		if (pSt_arr_[i] != NULL)
+		{
+			pSt_arr_[i]->~Student();
+		}
+		
+	}
 	delete[] pSt_arr_;
 }
 
@@ -20,9 +28,26 @@ int StArray::addStudent(int id, char * name)
 {
 	if (name == NULL || St_num_==MAX_STUDENT_NUM)
 		return 0;
-	Student student(id, name, 0, 0);
-	St_num_++;
-	return 1;
+	for (int i = 0; i < MAX_STUDENT_NUM; i++)// search for another student with this id,if existts then fail the addition
+	{
+		if (pSt_arr_[i] != NULL)
+		{
+			if (pSt_arr_[i]->getID() == id)
+			{
+				return 0;
+			}
+		}
+		
+	}
+	for (int i = 0; i < MAX_STUDENT_NUM; i++)
+	{
+		if (pSt_arr_[i] == NULL)
+		{
+			pSt_arr_[i] = new Student(id, name, 0, 0);
+			St_num_++;
+			return 1;
+		}
+	}	
 }
 
 int StArray::addEE_Course(int id, int course_num, char * course_name, int hw_num, double hw_weigh)
@@ -32,17 +57,21 @@ int StArray::addEE_Course(int id, int course_num, char * course_name, int hw_num
 	Student* pSt=NULL;
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		if (pSt_arr_[i]->getID() == id)
+		if (pSt_arr_[i] != NULL)
 		{
-			pSt = pSt_arr_[i];
+			if (pSt_arr_[i]->getID() == id)
+			{
+				pSt= pSt_arr_[i];
+				break;
+			}
 		}
 	}
 
 	if (pSt == NULL)
 		return 0;
 
-	EE_Course ee_course(course_num, course_name, hw_num, hw_weigh, 0);
-	return pSt->addEE_Course(&ee_course);
+	EE_Course* ee_course = new EE_Course(course_num, course_name, hw_num, hw_weigh, 0);
+	return pSt->addEE_Course(ee_course);
 }
 
 int StArray::addCS_Course(int id, int course_num, char* course_name, int hw_num, double hw_weigh, bool isTakef, char* book)
@@ -52,16 +81,21 @@ int StArray::addCS_Course(int id, int course_num, char* course_name, int hw_num,
 	Student* pSt = NULL;
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		if (pSt_arr_[i]->getID() == id)
+		if (pSt_arr_[i] != NULL)
 		{
-			pSt = pSt_arr_[i];
+			if (pSt_arr_[i]->getID() == id)
+			{
+				pSt = pSt_arr_[i];
+				break;
+			}
 		}
+		
 	}
 	if (pSt == NULL)
 		return 0;
 
-	CS_Course cs_course(course_num, course_name, hw_num, hw_weigh,isTakef,book);
-	return pSt->addCS_Course(&cs_course);
+	CS_Course* cs_course=new CS_Course(course_num, course_name, hw_num, hw_weigh,isTakef,book);
+	return pSt->addCS_Course(cs_course);
 }
 
 int StArray::setHwGrade(int id, int course_num, int hw_num_order, int grade)
@@ -69,9 +103,13 @@ int StArray::setHwGrade(int id, int course_num, int hw_num_order, int grade)
 	Student* pSt = NULL;
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		if (pSt_arr_[i]->getID() == id)
+		if (pSt_arr_[i] != NULL)
 		{
-			pSt = pSt_arr_[i];
+			if (pSt_arr_[i]->getID() == id)
+			{
+				pSt = pSt_arr_[i];
+				break;
+			}
 		}
 	}
 	if (pSt == NULL)
@@ -108,9 +146,13 @@ int StArray::setExamGrade(int id, int course_num, int exam_grade)
 	Student* pSt = NULL;
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		if (pSt_arr_[i]->getID() == id)
+		if (pSt_arr_[i] != NULL)
 		{
-			pSt = pSt_arr_[i];
+			if (pSt_arr_[i]->getID() == id)
+			{
+				pSt = pSt_arr_[i];
+				break;
+			}
 		}
 	}
 	if (pSt == NULL)
@@ -157,11 +199,15 @@ int StArray::printStudent(int id)
 {
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		if (pSt_arr_[i]->getID() == id)
+		if (pSt_arr_[i] != NULL)
 		{
-			pSt_arr_[i]->print();
-			return 1;
+			if (pSt_arr_[i]->getID() == id)
+			{
+				pSt_arr_[i]->print();
+				return 1;
+			}
 		}
+		
 	}
 	return 0;
 
@@ -171,7 +217,11 @@ void StArray::printAll()
 {
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		printStudent(pSt_arr_[i]->getID());
+		if (pSt_arr_[i] != NULL)
+		{
+			printStudent(pSt_arr_[i]->getID());
+		}
+		
 	}
 
 }
@@ -181,7 +231,11 @@ void StArray::resetStArray()
 {
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
-		pSt_arr_[i]->~Student();
+		if (pSt_arr_[i] != NULL)
+		{
+			pSt_arr_[i]->~Student();
+		}
+
 	}
 }
 
