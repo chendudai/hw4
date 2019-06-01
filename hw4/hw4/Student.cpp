@@ -154,10 +154,10 @@ using namespace std;
 
 void Student::print() const
 {
-	cout << "SName:" << name_ << endl;
-	cout << "SID:" << id_ << endl;
-	cout << "Avg.:" << getAvg() << "\n" <<endl;
-	cout << "EE:" << endl;
+	cout << "Student name: " << name_ << endl;
+	cout << "Student ID: " << id_ << endl;
+	cout << "Average grade: " << getAvg() << "\n" <<endl;
+	cout << "EE courses:" << endl;
 
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
