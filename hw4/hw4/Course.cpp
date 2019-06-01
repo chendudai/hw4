@@ -11,7 +11,15 @@ Course::Course(int num, char* name, int hw_num, double hw_weigh) : num_(num), hw
 {
 	name_ = new char[strlen(name) + 1];
 	strcpy(name_, name);
-	hw_grades_ = new int[hw_num_] {0};
+	if (hw_num != 0)
+	{
+		hw_grades_ = new int[hw_num_] {0};
+	}
+	else
+	{
+		hw_grades_ = NULL;
+	}
+	
 }
 
 Course::~Course()
