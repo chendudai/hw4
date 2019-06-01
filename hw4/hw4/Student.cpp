@@ -156,7 +156,7 @@ void Student::print() const
 {
 	cout << "SName:" << name_ << endl;
 	cout << "SID:" << id_ << endl;
-	cout << "Avg.:" << getAvg() << endl;
+	cout << "Avg.:" << getAvg() << "\n" <<endl;
 	cout << "EE:" << endl;
 
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
@@ -169,7 +169,7 @@ void Student::print() const
 			delete[] course_name;
 		} 
 	}
-	
+	cout << "\n" << endl;
 	cout << "CS courses:" << endl;
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
@@ -180,4 +180,5 @@ void Student::print() const
 			delete[] course_name;
 		}
 	}
+	cout << "\n" << endl;
 }
