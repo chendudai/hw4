@@ -17,13 +17,13 @@
  {
 	 for (int i = 0; i < MAX_COURSE_NUM; i++)
 	 {
-		 if (pEE_courses_arr_ != NULL)
+		 if (pEE_courses_arr_[i] != NULL)
 		 {
-			 pEE_courses_arr_[i]->~EE_Course();
+			 delete pEE_courses_arr_[i];
 		 }
-		 if (pCS_courses_arr_ != NULL)
+		 if (pCS_courses_arr_[i] != NULL)
 		 {
-			 pCS_courses_arr_[i]->~CS_Course();
+			 delete pCS_courses_arr_[i];
 		 }
 		
 	 }
@@ -146,6 +146,10 @@ int Student::getAvg() const
 		}
 		
 	}
+	if ((EE_course_num_ + CS_course_num_) == 0)
+	{
+		return 0;
+	}
 	return round(sum / (EE_course_num_ + CS_course_num_));
 }
 
@@ -165,20 +169,21 @@ void Student::print() const
 		{
 			char* course_name ;
 			course_name = (pEE_courses_arr_[i]->getName());
-			cout << pEE_courses_arr_[i]->getNum()  << " " << course_name << " " << pEE_courses_arr_[i]->getCourseGrade() << endl;;
+			cout << pEE_courses_arr_[i]->getNum()  << " " << course_name << ": " << pEE_courses_arr_[i]->getCourseGrade() << endl;;
 			delete[] course_name;
 		} 
 	}
-	cout << "\n" << endl;
+	cout << "" << endl;
 	cout << "CS courses:" << endl;
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
 		if (pCS_courses_arr_[i] != NULL)
 		{
 			char* course_name = (pCS_courses_arr_[i]->getName());
-			cout << pCS_courses_arr_[i]->getNum() << " " << course_name << " " << pCS_courses_arr_[i]->getCourseGrade() << endl;;
+			cout << pCS_courses_arr_[i]->getNum() << " " << course_name << ": " << pCS_courses_arr_[i]->getCourseGrade() << endl;;
 			delete[] course_name;
 		}
 	}
-	cout << "\n" << endl;
+	cout << "" << endl;
+	
 }

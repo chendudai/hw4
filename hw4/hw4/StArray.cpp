@@ -17,7 +17,7 @@ StArray::~StArray()
 	{
 		if (pSt_arr_[i] != NULL)
 		{
-			pSt_arr_[i]->~Student();
+			delete pSt_arr_[i];
 		}
 		
 	}
