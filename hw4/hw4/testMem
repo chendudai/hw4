@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Runs the program in $2 with valgrind, and moves the file in program $3 to the input of $2.
+#The output of valgrind moves to the file of $1. The valgrind cheks if there are errors in the program and memory leaks...
+#or memory access problems.
+
+valgrind --tool=memcheck --leak-check=full ./"$2" < "$3" 2>"$1">/dev/null
+if grep -q "LEAK SUMMARY" "$1" || grep -q "Invalid" "$1" ; then 
+	echo "Memory X"
+	exit 1
+fi
+echo "Memory V"
+exit 0
+

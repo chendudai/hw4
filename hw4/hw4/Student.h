@@ -1,14 +1,14 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-//#define NULL nullptr
 #include "Person.h"
 #include "EE_Course.h"
 #include "CS_Course.h"
+#include <string.h>
 
 class Student : public Person {
 public:
-	Student(int id, char* name, int EE_course_num, int CS_course_num);
+	Student(int id = 0,const char* name = NULL, int EE_course_num = 0, int CS_course_num = 0);
 	virtual ~Student();
 	int getCourseCnt() const;
 	int addEE_Course(EE_Course* p_EE_Course);

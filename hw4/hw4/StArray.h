@@ -7,9 +7,9 @@ class StArray {
 public:
 	StArray();
 	virtual ~StArray();
-	int addStudent(int id, char* name);
-	int addEE_Course(int id, int course_num, char* course_name, int hw_num, double hw_weigh);
-	int addCS_Course(int id, int course_num, char* course_name, int hw_num, double hw_weigh, bool isTakef, char* book);
+	int addStudent(int id,const char* name);
+	int addEE_Course(int id, int course_num,const char* course_name, int hw_num, double hw_weigh);
+	int addCS_Course(int id, int course_num,const char* course_name, int hw_num, double hw_weigh, bool isTakef,const char* book);
 	int setHwGrade(int id, int course_num, int hw_num_order, int grade);
 	int setExamGrade(int id, int course_num, int exam_grade);
 	int setFactor(int course_num, int factor);

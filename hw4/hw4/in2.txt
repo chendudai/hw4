@@ -1,0 +1,38 @@
+Add_Student 22131 Doron
+Add_Student 12654 Ami
+Add_Student 128 Moshe
+Add_Student 325 Gidon
+
+Add_CS_Course 22131 211 Algorithms 2 0.25 0 Introduction_to_Algorithms
+Set_Exam_Grade 22131 211 88
+Set_HW_Grade 22131 211 0 91
+Set_HW_Grade 22131 211 1 95
+Add_EE_Course 22131 100 Mitug 0 0
+Set_Exam_Grade 22131 100 93
+
+Add_EE_Course 12654 103 Malam 1 0.1
+Set_HW_Grade 12654 103 0 87
+Set_Exam_Grade 12654 103 93
+Add_CS_Course 12654 201 Combinatorics 1 0.3 0 Graph_Algorithms
+Set_HW_Grade 12654 201 0 96
+Set_Exam_Grade 12654 201 87
+
+Print_All
+
+Add_Student 56778 Tomer
+
+Add_EE_Course 128 100 Malam 1 0.15
+Set_HW_Grade 128 100 0 88
+Set_Exam_Grade 128 100 90
+Add_EE_Course 128 103 Mitug 2 0.2
+Set_HW_Grade 128 103 1 91
+Set_HW_Grade 128 103 0 97
+Set_Exam_Grade 128 103 86
+Add_CS_Course 128 200 Combinatorics 2 0.2 0 Graph_Algorithms
+Set_HW_Grade 128 200 0 86
+Set_HW_Grade 128 200 1 95
+Set_Exam_Grade 128 200 97
+
+
+Print_All
+

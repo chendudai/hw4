@@ -1,25 +1,41 @@
-#ifndef _CRT_SECURE_NO_WARNINGS
-#define _CRT_SECURE_NO_WARNINGS
-#endif // !_CRT_SECURE_NO_WARNINGS
-
 #include "CS_Course.h"
 #include <string.h>
 #include <math.h> 
 #include <algorithm>
 
-CS_Course::CS_Course(int num, char* name, int hw_num, double hw_weigh, bool isTakef, char* book)
+CS_Course::CS_Course(int num,const char* name, int hw_num, double hw_weigh, bool isTakef,const char* book)
 	:Course(num, name, hw_num, hw_weigh), isTakef_(isTakef) 
 {
-	book_ = new char[strlen(book) + 1];
-	strcpy(book_, book);
+	if (book != NULL)
+	{
+		book_ = new char[strlen(book) + 1];
+		strcpy(book_, book);
+	}
 }
 
 CS_Course::~CS_Course() 
 {
-	delete[] book_;
+	if (book_ != NULL)
+	{
+		delete[] book_;
+	}
 }
 
 int CS_Course::isTakef() const { return isTakef_; }
+
+char* CS_Course::getBook() const
+{
+
+	if (book_ != NULL)
+	{
+		char* copy_book = new char[strlen(book_) + 1];
+		copy_book = strcpy(copy_book, book_);
+		return copy_book;
+	}
+	return NULL;
+
+}
+
 
 int CS_Course::setTakef(int isTakef)
 {
@@ -27,8 +43,9 @@ int CS_Course::setTakef(int isTakef)
 	return 1;
 }
 
-void CS_Course::setBook(char* book)
+void CS_Course::setBook(const char* book)
 {
+	delete[] book_;
 	book_ = new char[strlen(book) + 1];
 	strcpy(book_, book);
 	return;

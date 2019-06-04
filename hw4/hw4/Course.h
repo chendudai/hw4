@@ -1,9 +1,10 @@
 #ifndef COURSE_H
 #define COURSE_H
+#include <string.h>
 
 class Course {
 public:
-	Course (int num, char* name, int hw_num, double hw_weigh);
+	Course (int num = 0,const char* name = NULL, int hw_num = 0, double hw_weigh = 0);
 	virtual ~Course();
 	int getNum() const;
 	char* getName() const;

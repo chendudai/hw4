@@ -7,7 +7,7 @@
 #include "EE_Course.h"
 
  
- Student::Student(int id, char* name, int EE_course_num, int CS_course_num)
+ Student::Student(int id,const char* name, int EE_course_num, int CS_course_num)
 	 :Person(id,name),EE_course_num_(EE_course_num), CS_course_num_(CS_course_num)
 {
 	 pEE_courses_arr_ = new EE_Course*[MAX_COURSE_NUM]{NULL};
@@ -27,9 +27,14 @@
 		 }
 		
 	 }
-	 
-	 delete[] pEE_courses_arr_;
-	 delete[] pCS_courses_arr_;
+	 if (pEE_courses_arr_ != NULL)
+	 {
+		 delete[] pEE_courses_arr_;
+	 }
+	 if (pCS_courses_arr_ != NULL)
+	 {
+		 delete[] pCS_courses_arr_;
+	 }
  }
  int Student::getCourseCnt() const {
 	 return EE_course_num_ + CS_course_num_;
@@ -79,16 +84,26 @@ int Student::remCourse(int course_num)
 	{
 		if (pCS_courses_arr_[i]->getNum() == course_num)
 		{
-			delete pCS_courses_arr_[i];
-			pCS_courses_arr_[i] = NULL;
-			return 1;
+			if (pCS_courses_arr_[i] != NULL)
+			{
+				delete pCS_courses_arr_[i];
+				CS_course_num_--;
+				pCS_courses_arr_[i] = NULL;
+				return 1;
+			}
+
 		}
 
 		else if (pEE_courses_arr_[i]->getNum() == course_num)
 		{
-			delete pEE_courses_arr_[i];
-			pEE_courses_arr_[i] = NULL;
-			return 1;
+			if (pEE_courses_arr_[i] != NULL)
+			{
+				delete pEE_courses_arr_[i];
+				EE_course_num_--;
+				pEE_courses_arr_[i] = NULL;
+				return 1;
+			}
+	
 		}
 
 	}
@@ -142,7 +157,7 @@ int Student::getAvg() const
 	{
 		if (pCS_courses_arr_[i] != NULL)
 		{
-			sum += pCS_courses_arr_[i]->getCourseGrade(); //@@@@@@@@@@@@@@@@ how to get a member
+			sum += pCS_courses_arr_[i]->getCourseGrade();
 		}
 		
 	}
@@ -167,21 +182,29 @@ void Student::print() const
 	{
 		if (pEE_courses_arr_[i] != NULL)
 		{
-			char* course_name ;
-			course_name = (pEE_courses_arr_[i]->getName());
-			cout << pEE_courses_arr_[i]->getNum()  << " " << course_name << ": " << pEE_courses_arr_[i]->getCourseGrade() << endl;;
-			delete[] course_name;
+			char* course_name;
+			course_name = pEE_courses_arr_[i]->getName();
+			if (course_name != NULL)
+			{
+				cout << pEE_courses_arr_[i]->getNum() << " " << course_name << ": " << pEE_courses_arr_[i]->getCourseGrade() << endl;;
+				delete[] course_name;
+			}
+
 		} 
 	}
 	cout << "" << endl;
 	cout << "CS courses:" << endl;
 	for (int i = 0; i < MAX_COURSE_NUM; i++)
 	{
-		if (pCS_courses_arr_[i] != NULL)
+		if (pCS_courses_arr_[i] != NULL )
 		{
-			char* course_name = (pCS_courses_arr_[i]->getName());
-			cout << pCS_courses_arr_[i]->getNum() << " " << course_name << ": " << pCS_courses_arr_[i]->getCourseGrade() << endl;;
-			delete[] course_name;
+			char* course_name;
+			course_name = pCS_courses_arr_[i]->getName();
+			if (course_name != NULL)
+			{
+				cout << pCS_courses_arr_[i]->getNum() << " " << course_name << ": " << pCS_courses_arr_[i]->getCourseGrade() << endl;;
+				delete[] course_name;
+			}
 		}
 	}
 	cout << "" << endl;

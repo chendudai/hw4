@@ -30,10 +30,10 @@
     <ClCompile Include="EE_Course.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="StArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StArray.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -21,10 +21,13 @@ StArray::~StArray()
 		}
 		
 	}
-	delete[] pSt_arr_;
+	if (pSt_arr_ != NULL)
+	{
+		delete[] pSt_arr_;
+	}
 }
 
-int StArray::addStudent(int id, char * name)
+int StArray::addStudent(int id,const char * name)
 {
 	if (name == NULL || St_num_==MAX_STUDENT_NUM)
 		return 0;
@@ -50,7 +53,7 @@ int StArray::addStudent(int id, char * name)
 	}	
 }
 
-int StArray::addEE_Course(int id, int course_num, char * course_name, int hw_num, double hw_weigh)
+int StArray::addEE_Course(int id, int course_num,const char * course_name, int hw_num, double hw_weigh)
 {
 	if (course_name == NULL)
 		return 0;
@@ -74,7 +77,7 @@ int StArray::addEE_Course(int id, int course_num, char * course_name, int hw_num
 	return pSt->addEE_Course(ee_course);
 }
 
-int StArray::addCS_Course(int id, int course_num, char* course_name, int hw_num, double hw_weigh, bool isTakef, char* book)
+int StArray::addCS_Course(int id, int course_num,const char* course_name, int hw_num, double hw_weigh, bool isTakef,const char* book)
 {
 	if (course_name == NULL || book == NULL)
 		return 0;

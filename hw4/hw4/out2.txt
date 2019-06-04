@@ -1,0 +1,83 @@
+Student name: Doron
+Student ID: 22131
+Average grade: 91
+
+EE courses:
+100 Mitug: 93
+
+CS courses:
+211 Algorithms: 89
+
+Student name: Ami
+Student ID: 12654
+Average grade: 91
+
+EE courses:
+103 Malam: 92
+
+CS courses:
+201 Combinatorics: 90
+
+Student name: Moshe
+Student ID: 128
+Average grade: 0
+
+EE courses:
+
+CS courses:
+
+Student name: Gidon
+Student ID: 325
+Average grade: 0
+
+EE courses:
+
+CS courses:
+
+Student name: Doron
+Student ID: 22131
+Average grade: 91
+
+EE courses:
+100 Mitug: 93
+
+CS courses:
+211 Algorithms: 89
+
+Student name: Ami
+Student ID: 12654
+Average grade: 91
+
+EE courses:
+103 Malam: 92
+
+CS courses:
+201 Combinatorics: 90
+
+Student name: Moshe
+Student ID: 128
+Average grade: 92
+
+EE courses:
+100 Malam: 90
+103 Mitug: 88
+
+CS courses:
+200 Combinatorics: 97
+
+Student name: Gidon
+Student ID: 325
+Average grade: 0
+
+EE courses:
+
+CS courses:
+
+Student name: Tomer
+Student ID: 56778
+Average grade: 0
+
+EE courses:
+
+CS courses:
+
